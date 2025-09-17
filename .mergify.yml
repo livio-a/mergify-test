@@ -8,6 +8,11 @@ pull_request_rules:
       backport:
         branches:
           - release-1.0
+        report_mode:
+          - check
+          - comment
+        assignees:
+          - '{{author}}'
 
   - name: Backport to release-2.0
     conditions:
