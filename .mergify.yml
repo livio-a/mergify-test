@@ -79,4 +79,4 @@ pull_request_rules:
           3. Resolve any conflicts
           4. Create a new PR with the resolved changes
           
-          Original PR: #{{ body | get_backport_pr_number }}
+          Original PR: #{{ number }}
