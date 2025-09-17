@@ -14,19 +14,19 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
       with:
-        python-version: '3.9'
+        go-version: '1.21'
     
-    - name: Run Python syntax check
+    - name: Run Go build and test
       run: |
-        python -m py_compile calculator.py
-        echo "✅ Python syntax check passed"
+        go build -v ./...
+        echo "✅ Go build completed successfully"
     
     - name: Run calculator demo
       run: |
-        python calculator.py
+        go run .
         echo "✅ Calculator demo completed successfully"
     
     - name: Validate Mergify config
