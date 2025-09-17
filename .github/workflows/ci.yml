@@ -23,7 +23,12 @@ jobs:
       run: |
         go test -v ./...
         echo "✅ Go tests completed successfully"
-    
+    - name: Mergify CI Upload
+      if: success() || failure()
+      uses: mergifyio/gha-mergify-ci@v8
+      with:
+        token: ${{ secrets.MERGIFY_TOKEN }}
+        report_path: junit.xml
     - name: Run Go build
       run: |
         go build -v ./...
