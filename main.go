@@ -11,7 +11,11 @@ func main() {
 	calc := NewCalculator()
 
 	fmt.Printf("Calculator Demo v%s\n", version)
+<<<<<<< HEAD
 	fmt.Println(strings.Repeat("=", 30))
+=======
+	fmt.Println(strings.Repeat("=", 10))
+>>>>>>> 323e663 (Change repeat length in calculator demo output)
 
 	fmt.Printf("2 + 3 = %.0f\n", calc.Add(2, 3))
 	fmt.Printf("5 - 1 = %.0f\n", calc.Subtract(5, 1))
