@@ -1,0 +1,50 @@
+name: Backport Request
+description: Request a backport of merged changes to maintenance branches
+title: "Backport #<PR_NUMBER> to <BRANCH_NAME>"
+labels:
+  - backport-request
+body:
+  - type: input
+    id: pr-number
+    attributes:
+      label: Original PR Number
+      description: The PR number that should be backported
+      placeholder: "#123"
+    validations:
+      required: true
+      
+  - type: checkboxes
+    id: target-branches
+    attributes:
+      label: Target Branches
+      description: Which maintenance branches should receive the backport?
+      options:
+        - label: release-1.0
+          value: release-1.0
+        - label: release-2.0
+          value: release-2.0
+        - label: All maintenance branches
+          value: all
+    validations:
+      required: true
+      
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justification
+      description: Why is this backport needed?
+      placeholder: "This fix addresses a critical bug that affects users on the maintenance branches..."
+    validations:
+      required: true
+      
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have verified that the original PR is merged
+          required: true
+        - label: I have checked that this change is appropriate for the target branches
+          required: true
+        - label: I understand that conflicts may require manual resolution
+          required: true

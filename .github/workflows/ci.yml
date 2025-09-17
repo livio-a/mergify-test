@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, release-* ]
+  pull_request:
+    branches: [ main, release-* ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: ci
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Run Python syntax check
+      run: |
+        python -m py_compile calculator.py
+        echo "✅ Python syntax check passed"
+    
+    - name: Run calculator demo
+      run: |
+        python calculator.py
+        echo "✅ Calculator demo completed successfully"
+    
+    - name: Validate Mergify config
+      run: |
+        # Simple validation that .mergify.yml exists and is not empty
+        if [ -f ".mergify.yml" ] && [ -s ".mergify.yml" ]; then
+          echo "✅ Mergify configuration found"
+        else
+          echo "❌ Mergify configuration missing or empty"
+          exit 1
+        fi
+    
+    - name: Check documentation
+      run: |
+        if [ -f "README.md" ] && grep -q "mergify" "README.md"; then
+          echo "✅ Documentation includes Mergify information"
+        else
+          echo "❌ Documentation missing Mergify information"
+          exit 1
+        fi
