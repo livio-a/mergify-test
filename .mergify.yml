@@ -9,10 +9,9 @@ pull_request_rules:
         branches:
           - release-1.0
         report_mode:
-          - check
           - comment
         assignees:
-          - '{{author}}'
+          - "{{ author }}"
 
   - name: Backport to release-2.0
     conditions:
