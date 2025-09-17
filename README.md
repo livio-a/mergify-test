@@ -64,7 +64,7 @@ The Mergify configuration is defined in [`.mergify.yml`](.mergify.yml) and inclu
 
 You can test the backporting functionality by:
 
-1. Modifying the [`calculator.py`](calculator.py) file
+1. Modifying the Go calculator files (`calculator.go` or `main.go`)
 2. Creating a PR with backport labels
 3. Merging the PR
 4. Observing the automatic backport PRs created by Mergify
@@ -72,7 +72,9 @@ You can test the backporting functionality by:
 ## Files
 
 - `.mergify.yml` - Mergify configuration for automatic backporting
-- `calculator.py` - Sample application for testing backports
+- `calculator.go` - Calculator library implementation in Go
+- `main.go` - Main application entry point for the calculator demo
+- `go.mod` - Go module configuration
 - `README.md` - This documentation
 
 ## Benefits
