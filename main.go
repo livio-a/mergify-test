@@ -10,8 +10,13 @@ const version = "1.0.0"
 func main() {
 	calc := NewCalculator()
 
+<<<<<<< HEAD
 	fmt.Printf("Calculator Demo v%s\n", version)
 	fmt.Println(strings.Repeat("=", 30))
+=======
+	fmt.Printf("Calculator Demo2 v%s\n", version)
+	fmt.Println(strings.Repeat("=", 20))
+>>>>>>> 7969cfe (Change demo version string to 'Calculator Demo2')
 
 	fmt.Printf("2 + 3 = %.0f\n", calc.Add(2, 3))
 	fmt.Printf("5 - 1 = %.0f\n", calc.Subtract(5, 1))
