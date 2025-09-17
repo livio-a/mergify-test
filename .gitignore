@@ -21,6 +21,11 @@ wheels/
 *.egg
 MANIFEST
 
+# Go
+calculator
+mergify-test
+*.exe
+
 # IDEs
 .vscode/
 .idea/
