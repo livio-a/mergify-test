@@ -14,19 +14,30 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
       with:
-        python-version: '3.9'
-    
-    - name: Run Python syntax check
+        go-version-file: go.mod
+    - name: install go-junit-report
+      run: go install github.com/jstemmer/go-junit-report/v2@latest
+    - name: Run Go tests
       run: |
-        python -m py_compile calculator.py
-        echo "✅ Python syntax check passed"
+        go test -v ./... 2>&1 | go-junit-report > junit.xml
+        echo "✅ Go tests completed successfully"
+    - name: Mergify CI Upload
+      if: success() || failure()
+      uses: mergifyio/gha-mergify-ci@v8
+      with:
+        token: ${{ secrets.MERGIFY_TOKEN }}
+        report_path: junit.xml
+    - name: Run Go build
+      run: |
+        go build -v ./...
+        echo "✅ Go build completed successfully"
     
     - name: Run calculator demo
       run: |
-        python calculator.py
+        go run .
         echo "✅ Calculator demo completed successfully"
     
     - name: Validate Mergify config
