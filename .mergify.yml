@@ -1,0 +1,82 @@
+pull_request_rules:
+  # Automatic backporting to maintenance branches
+  - name: Backport to release-1.0
+    conditions:
+      - merged
+      - label=backport-to-release-1.0
+    actions:
+      backport:
+        branches:
+          - release-1.0
+
+  - name: Backport to release-2.0
+    conditions:
+      - merged
+      - label=backport-to-release-2.0
+    actions:
+      backport:
+        branches:
+          - release-2.0
+
+  # Automatic backporting to multiple branches with a single label
+  - name: Backport to all maintenance branches
+    conditions:
+      - merged
+      - label=backport-to-all
+    actions:
+      backport:
+        branches:
+          - release-1.0
+          - release-2.0
+
+  # Auto-merge approved backport PRs
+  - name: Auto-merge backport PRs
+    conditions:
+      - author=mergify[bot]
+      - head~=^mergify/bp/
+      - "#approved-reviews-by>=1"
+      - "#changes-requested-reviews-by=0"
+      - check-success=ci
+    actions:
+      merge:
+        method: merge
+        commit_message_template: |
+          {{ title }} (#{{ number }})
+          
+          Backport of original PR
+
+  # Label management for backport requests
+  - name: Add backport labels helper
+    conditions:
+      - merged
+      - body~=(?i)backport to (.+)
+    actions:
+      comment:
+        message: |
+          To backport this PR, please add one of the following labels:
+          - `backport-to-release-1.0` - Backport to release-1.0 branch
+          - `backport-to-release-2.0` - Backport to release-2.0 branch  
+          - `backport-to-all` - Backport to all maintenance branches
+          
+          You can also manually cherry-pick the changes if automatic backporting fails.
+
+  # Notification for failed backports
+  - name: Comment on backport failure
+    conditions:
+      - author=mergify[bot]
+      - head~=^mergify/bp/
+      - check-failure=mergify
+    actions:
+      comment:
+        message: |
+          🚨 **Backport failed** 🚨
+          
+          The automatic backport encountered conflicts that need manual resolution.
+          
+          To resolve:
+          1. Check out the target branch
+          2. Manually cherry-pick the changes
+          3. Resolve any conflicts
+          4. Create a new PR with the resolved changes
+          
+          Original PR: #{{ body | get_backport_pr_number }}
