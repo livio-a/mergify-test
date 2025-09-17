@@ -21,7 +21,7 @@ jobs:
     
     - name: Run Go tests
       run: |
-        go test -v ./...
+        go test -v ./... 2>&1 | go-junit-report > junit.xml
         echo "✅ Go tests completed successfully"
     - name: Mergify CI Upload
       if: success() || failure()
