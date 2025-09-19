@@ -1,5 +1,6 @@
 # mergify-test
 
+<<<<<<< HEAD
 A repository to test Mergify's automatic backporting capabilities for merged PRs to maintenance branches.
 
 ## Overview
@@ -84,3 +85,6 @@ You can test the backporting functionality by:
 - **Conflict Detection**: Automatically detects and reports merge conflicts
 - **Audit Trail**: Clear history of which changes were backported where
 - **Time Saving**: Maintainers focus on reviewing rather than manual backporting
+=======
+test2
+>>>>>>> b7e43a0 (test)
