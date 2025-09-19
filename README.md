@@ -1,3 +1,3 @@
 # mergify-test
 
-test
+test2
