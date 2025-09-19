@@ -83,4 +83,8 @@ You can test the backporting functionality by:
 - **Consistency**: Ensures all requested backports are created
 - **Conflict Detection**: Automatically detects and reports merge conflicts
 - **Audit Trail**: Clear history of which changes were backported where
+<<<<<<< HEAD
 - **Time Saving**: Maintainers focus on reviewing rather than manual backporting
+=======
+- **Time Saving**: Maintainers focus on reviewing rather than manual backporting
+>>>>>>> 5f562ee (Clean up README by removing test line)
