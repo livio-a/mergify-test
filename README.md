@@ -1,5 +1,6 @@
 # mergify-test
 
+<<<<<<< HEAD
 A repository to test Mergify's automatic backporting capabilities for merged PRs to maintenance branches.
 
 ## Overview
@@ -86,3 +87,6 @@ You can test the backporting functionality by:
 - **Time Saving**: Maintainers focus on reviewing rather than manual backporting
 
   test
+=======
+test2
+>>>>>>> b7e43a0 (test)
