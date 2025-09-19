@@ -23,7 +23,7 @@ pull_request_rules:
           - release-2.0
 
   # Automatic backporting to multiple branches with a single label
-  - name: Backport to all maintenance branches
+  - name: Backport to all (maintenance) branches
     conditions:
       - merged
       - label=backport-to-all
@@ -32,6 +32,7 @@ pull_request_rules:
         branches:
           - release-1.0
           - release-2.0
+          - main
 
   # Auto-merge approved backport PRs
   - name: Auto-merge backport PRs
