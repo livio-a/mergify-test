@@ -10,7 +10,11 @@ const version = "1.0.0"
 func main() {
 	calc := NewCalculator()
 
+<<<<<<< HEAD
 	fmt.Printf("Calculator Demo v%s\n", version)
+=======
+	fmt.Printf("Calculator Demo3 v%s\n", version)
+>>>>>>> 9c7d77d (Increase separator length in calculator demo output)
 	fmt.Println(strings.Repeat("=", 30))
 
 	fmt.Printf("2 + 3 = %.0f\n", calc.Add(2, 3))
